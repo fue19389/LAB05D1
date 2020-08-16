@@ -3,31 +3,27 @@
 //19389
 
 //Modulo multiplexer 2:1 genérico
-module mux2(input [1:0]d0, input s, output y);
+module mux2(input [1:0]d0, input s, output y0);
 
-  assign y = s ? d0[1]:d0[0];
+  assign y0 = s ? d0[1]:d0[0];
 
 endmodule
 
 //Modulo multiplexer 4:1 a partir de un 2:1 genérico
-//module mux4(input [3:0]d1, input[1:0]s1, output y1);
+module mux4(input [3:0]d1, input[1:0]s1, output[1:0]y11, output y1);
 
-//  wire w1, w2;
+  mux2 m1(d1[1:0], s1[0], y11[0]);
+  mux2 m2(d1[3:2], s1[0], y11[1]);
+  mux2 m3(y11[1:0], s1[1], y1);
 
-//  mux2 m1([1:0]d1, [0]s1, w1);
-//  mux2 m2([3:2]d1, [0]s1, w2);
-//  mux2 m3(w2, w1, [1]s1, y1);
-
-//endmodule
+endmodule
 
 //Modulo multiplexer 8:1 a partir de modulos 4:1 y 2:1
-//module mux8(input [7:0]d2, input[2:0]s2, output y2);
+module mux8(input [7:0]d2, input[2:0]s2, output[1:0]y22, y23, y24, output y2);
 
-//  wire w3, w4;
-
-//  mux4([3:0]d2, [1:0]s2, w3);
-//  mux4([7:4]d2, [1:0]s2, w4);
-//  mux2(w4, w3, [2]s2, y2);
+  mux4([3:0]d2, s2[1:0], y23[1:0], y22[0]);
+  mux4([7:4]d2, s2[1:0], y24[1:0], y22[1]);
+  mux2(y22[1:0], [2]s2, y2);
 
 //endmodule
 
@@ -41,10 +37,35 @@ module mux2_1(input [1:0]d0, input t, output [1:0]y2, output y3);
 endmodule
 
 //Modulo Tabla 2 con mux 2:1
-module mux2_2(input [1:0]d1, input u, output [1:0]y4, output y5);
+module mux2_2(input [1:0]d0, input t, output [1:0]y2, output y3);
 
-  assign y4[0]= ~(d1[1] | d1[0]);
-  assign y4[1]= ~(d1[1] & d1[0]);
-  mux2 M4(y4[1:0], u, y5);
+  assign y2[0]= ~(d0[1] | d0[0]);
+  assign y2[1]= ~(d0[1] & d0[0]);
+  mux2 M4(y2[1:0], t, y3);
 
 endmodule
+
+//Modulo Tabla 1 con mux 4:1
+module mux4_1(input[2:0]d1, output[1:0]y4_2, output[3:0]y4_1, output y5);
+
+  assign y4_1[0]= d1[0];
+  assign y4_1[1]= ~d1[0];
+  assign y4_1[2]= ~d1[0];
+  assign y4_1[3]= d1[0];
+  mux4 M5(y4_1[3:0], d1[2:1], y4_2[1:0], y5);
+
+endmodule
+
+//Modulo Tabla 2 con mux 4:1
+module mux4_2(input[2:0]d1, output[1:0]y4_2, output[3:0]y4_1, output y5);
+
+  assign y4_1[0]= ~d1[0];
+  assign y4_1[1]= 0;
+  assign y4_1[2]= 1;
+  assign y4_1[3]= ~d1[0];
+  mux4 M5(y4_1[3:0], d1[2:1], y4_2[1:0], y5);
+
+endmodule
+
+//Modulo Tabla 1 con mux 8:1
+module mux8_1(input [7:0]d2, input[2:0]s2, output[1:0]y22, y23, y24, output y2);
