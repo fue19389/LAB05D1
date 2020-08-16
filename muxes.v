@@ -87,8 +87,7 @@ endmodule
 //Modulo Tabla 1 con mux 8:1
 module mux8_1(output [7:0]v2, input[2:0]o2, output[1:0]p11, p12, p13, output p1);//Nótese, que ahora ya no tenemos inputs, para las entradas, sino unicamente para los enables
 //esto es porque las entradas serán valores fijos, entonces el valor fijo es el input, por lo que no se usará un reg que cambiaría su valor, sino un wire (en el testbench)
-//entonces solo necesitamos que ingrese el circuito, con dichos valores, y se define por lo tanto como output. Si se utilzó en el anterior un input, porque se considera que es el circuito
-//sin conectar, en cambio ahora, estamos definiendo el input inicialmente.
+//entonces solo necesitamos que ingrese el circuito, con dichos valores, y se define por lo tanto como output.
 
   assign v2[0]= 0;
   assign v2[1]= 1;

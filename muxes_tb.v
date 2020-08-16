@@ -123,7 +123,7 @@ module testbench();
   end
 
   initial
-    #120 $finish;
+    #70 $finish;
 
   initial begin
     $dumpfile("muxes_tb.vcd");
