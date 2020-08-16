@@ -57,8 +57,8 @@ module testbench();
   initial begin
   #18
     $display("\n");
-    $display("Todas las ecuaciones");
-    $display("t b c | y");
+    $display("TABLA NO1 MUX 4:1");
+    $display("A B C | Y");
     $display("------|--");
     $monitor("%b %b %b | %b", d2[2], d2[1], d2[0], y7);
        d2[2] = 0; d2[1] = 0; d2[0] = 0;
@@ -74,8 +74,8 @@ module testbench();
   initial begin
   #28
     $display("\n");
-    $display("Todas las ecuaciones");
-    $display("t b c | y");
+    $display("TABLA NO2 MUX 4:1");
+    $display("A B C | Y");
     $display("------|--");
     $monitor("%b %b %b | %b", d3[2], d3[1], d3[0], y9);
        d3[2] = 0; d3[1] = 0; d3[0] = 0;
@@ -91,8 +91,8 @@ module testbench();
   initial begin
   #40
     $display("\n");
-    $display("Todas las ecuaciones");
-    $display("t b c | y");
+    $display("TABLA NO1 MUX 8:1");
+    $display("A B C | Y");
     $display("------|--");
     $monitor("%b %b %b | %b", d4[2], d4[1], d4[0], y11);
        d4[2] = 0; d4[1] = 0; d4[0] = 0;
@@ -108,8 +108,8 @@ module testbench();
   initial begin
   #55
     $display("\n");
-    $display("Todas las ecuaciones");
-    $display("t b c | y");
+    $display("TABLA NO2 MUX 8:1");
+    $display("A B C | Y");
     $display("------|--");
     $monitor("%b %b %b | %b", d6[2], d6[1], d6[0], y13);
        d6[2] = 0; d6[1] = 0; d6[0] = 0;

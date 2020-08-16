@@ -9,31 +9,6 @@ module mux2(input [1:0]d0, input s, output y0);
 
 endmodule
 
-//Modulo multiplexer 4:1 a partir de un 2:1 genérico
-module mux4(input [3:0]d1, input[1:0]s1, output[1:0]y11, output y1);
-
-  mux2 m1(d1[1:0], s1[0], y11[0]);
-  mux2 m2(d1[3:2], s1[0], y11[1]);
-  mux2 m3(y11[1:0], s1[1], y1);
-
-endmodule
-
-//Modulo multiplexer 8:1 a partir de modulos 4:1 y 2:1
-module mux8(input [7:0]d2, input[2:0]s2, output[1:0]y22, y23, y24, output y2);
-
-  mux4 m4(d2[3:0], s2[1:0], y23[1:0], y22[0]);
-  mux4 m5(d2[7:4], s2[1:0], y24[1:0], y22[1]);
-  mux2 m6(y22[1:0], s2[2], y2);
-
-endmodule
-
-
-
-
-
-
-
-
 //Modulo Tabla 1 con mux 2:1
 module mux2_1(input [1:0]i0, input j, output [1:0]k11, output k1);
 
@@ -55,6 +30,16 @@ endmodule
 
 
 
+
+
+//Modulo multiplexer 4:1 a partir de un 2:1 genérico
+module mux4(input [3:0]d1, input[1:0]s1, output[1:0]y11, output y1);
+
+  mux2 m1(d1[1:0], s1[0], y11[0]);
+  mux2 m2(d1[3:2], s1[0], y11[1]);
+  mux2 m3(y11[1:0], s1[1], y1);
+
+endmodule
 
 //Modulo Tabla 1 con mux 4:1
 module mux4_1(input[2:0]n1, output[1:0]l111, output[3:0]l11, output l1);
@@ -83,6 +68,14 @@ endmodule
 
 
 
+//Modulo multiplexer 8:1 a partir de modulos 4:1 y 2:1
+module mux8(input [7:0]d2, input[2:0]s2, output[1:0]y22, y23, y24, output y2);
+
+  mux4 m4(d2[3:0], s2[1:0], y23[1:0], y22[0]);
+  mux4 m5(d2[7:4], s2[1:0], y24[1:0], y22[1]);
+  mux2 m6(y22[1:0], s2[2], y2);
+
+endmodule
 
 //Modulo Tabla 1 con mux 8:1
 module mux8_1(output [7:0]v2, input[2:0]o2, output[1:0]p11, p12, p13, output p1);
